@@ -1,1 +1,63 @@
 # paletas-corporativas
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Galería Fotográfica: México Bien Hecho</title>
+    <style>
+        body {
+            background: #f8f8f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin: 30px 0 10px 0;
+        }
+        .mosaico {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .foto {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .foto:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .foto img {
+            width: 100%;
+            display: block;
+        }
+        .descripcion {
+            padding: 10px;
+            text-align: center;
+            font-size: 1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería Fotográfica: México Bien Hecho</h1>
+    <div class="mosaico">
+        <!-- Ejemplo de foto. Copia y pega más bloques como este para cada imagen -->
+        <div class="foto">
+            <img src="fotos/imagen1.jpg" alt="Barrio Uno">
+            <div class="descripcion">Barrio Uno, Morelia</div>
+        </div>
+        <div class="foto">
+            <img src="fotos/imagen2.jpg" alt="Barrio Dos">
+            <div class="descripcion">Barrio Dos, Morelia</div>
+        </div>
+        <!-- Añade más bloques de foto aquí -->
+    </div>
+</body>
+</html>
