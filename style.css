@@ -40,20 +40,19 @@ nav a:hover {
 
 /* --- Footer personalizado --- */
 footer .footer-heading {
-  display: none; /* oculta el título "Paletas corporativas" */
+  display: none !important; /* oculta el título */
 }
 
 footer .p-name {
-  font-family: "Times New Roman", serif;
-  font-size: 0.9rem;
-  color: #666;
-  display: block;
-  margin-bottom: 2px;
+  font-family: "Times New Roman", serif !important;
+  font-size: 0.9rem !important;
+  color: #666 !important;
+  display: block !important;
+  margin-bottom: 2px !important;
 }
 
 footer .footer-col-3 p {
-  font-family: "Times New Roman", serif;
-  font-size: 0.85rem;
-  color: #999;
-  margin: 0;
-}
+  font-family: "Times New Roman", serif !important;
+  font-size: 0.85rem !important;
+  color: #999 !important;
+  margin: 0 !important;
