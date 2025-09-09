@@ -38,6 +38,22 @@ nav a:hover {
   display: block;
 }
 
-footer p:first-child {
-  display: none;
+/* --- Footer personalizado --- */
+footer .footer-heading {
+  display: none; /* oculta el título "Paletas corporativas" */
+}
+
+footer .p-name {
+  font-family: "Times New Roman", serif;
+  font-size: 0.9rem;
+  color: #666;
+  display: block;
+  margin-bottom: 2px;
+}
+
+footer .footer-col-3 p {
+  font-family: "Times New Roman", serif;
+  font-size: 0.85rem;
+  color: #999;
+  margin: 0;
 }
