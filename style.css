@@ -37,3 +37,11 @@ nav a:hover {
   width: 100%;
   display: block;
 }
+
+footer .title {
+  display: none;
+}
+footer .author,
+footer .description {
+  display: block;
+}
