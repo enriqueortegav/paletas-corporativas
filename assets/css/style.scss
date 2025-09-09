@@ -1,1 +1,60 @@
+@import "{{ site.theme }}";
+body {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: normal;
+  background: #fff;
+  color: #444;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
 
+h1, h2 {
+  font-weight: 400;
+  color: #000;
+}
+
+nav {
+  margin: 20px 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #666;
+  margin-right: 15px;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.gallery img {
+  width: 100%;
+  display: block;
+}
+
+/* --- Footer personalizado --- */
+footer .footer-heading {
+  display: none !important; /* oculta el título */
+}
+
+footer .p-name {
+  font-family: "Times New Roman", serif !important;
+  font-size: 0.9rem !important;
+  color: #666 !important;
+  display: block !important;
+  margin-bottom: 2px !important;
+}
+
+footer .footer-col-3 p {
+  font-family: "Times New Roman", serif !important;
+  font-size: 0.85rem !important;
+  color: #999 !important;
+  margin: 0 !important;
+}
