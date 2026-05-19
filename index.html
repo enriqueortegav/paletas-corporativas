@@ -315,7 +315,27 @@
         }
 
         function renderAbout() {
-            document.getElementById('inner-content').innerHTML = `<div class="space-y-32 pb-24"><div class="space-y-10 max-w-4xl"><h2 class="text-title-section">Sobre el proyecto</h2><p class="text-body-section">Paletas corporativas documenta la pintura habitacional y la mercantilización del paisaje en Morelia.</p></div><div class="space-y-10 max-w-4xl border-t-2 border-black pt-24"><h2 class="text-title-section">Sobre el autor</h2><p class="text-body-section">Enrique Ortega Vázquez, artista y maestrante en Historia del Arte por la UNAM.</p></div></div>`;
+            document.getElementById('inner-content').innerHTML = `
+                <div class="space-y-24 pb-24">
+                    <div class="space-y-8 max-w-4xl">
+                        <h2 class="text-title-section">Sobre el proyecto</h2>
+                        <p class="text-body-section">
+                            Paletas corporativas es un archivo fotográfico que documenta la pintura habitacional y la mercantilización del paisaje urbano en distintos barrios de Morelia. Este archivo acompaña a un texto publicado en "Las Islas También se Desplazan. Segunda Edición" por Islario Ediciones en 2026.
+                        </p>
+                        <p class="text-body-section">
+                            Las imágenes aquí reunidas exploran la tensión entre la identidad local y la homogeneización estética promovida por intereses corporativos y gubernamentales hacia la ciudad habitada. Es un repositorio de intervenciones que los habitantes de las colonias repintadas por Comex en 2016, bajo el proyecto "Pintando la alegría", han realizado con el tiempo.
+                        </p>
+                    </div>
+                    <div class="space-y-8 max-w-4xl border-t-2 border-black pt-24">
+                        <h2 class="text-title-section">Sobre el autor</h2>
+                        <p class="text-body-section">
+                            Enrique Ortega Vázquez, [Morelia, 1995]. Licenciado en Arte y Diseño por la UNAM [ENES Morelia, 2020], especialización en Lenguajes y Soportes Alternativos; maestrante en Historia del Arte por la UNAM [ENES Morelia], bajo línea de investigación en teoría y metodología. 
+                        </p>
+                        <p class="text-body-section">
+                            Su obra ha sido exhibida en espacios como el Centro Cultural Clavijero [2025], el Museo Cabañas [2025], el Museo de Arte Contemporáneo Alfredo Zalce [2019] y el Instituto de Artes Gráficas de Oaxaca [2019]. Ha recibido reconocimientos como el Premio de Adquisición en el XXIII Encuentro de Pintura y Estampa Efraín Vargas [2024].
+                        </p>
+                    </div>
+                </div>`;
         }
 
         function openLightbox(index) {
