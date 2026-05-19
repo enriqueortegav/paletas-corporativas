@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paletas corporativas | Enrique Ortega Vázquez</title>
+    <!-- Tailwind CSS para posicionamiento y distribución responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para controles de navegación mínimos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Tipografía Helvetica con fallbacks estándar de alta calidad */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #000000;
+        }
+
+        /* Tamaños de tipografía en puntos exactos y escalas dinámicas para el Inicio */
+        .title-main {
+            font-size: clamp(2.5rem, 7.5vw, 80pt);
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            white-space: nowrap; /* Fuerza estrictamente una sola línea */
+            width: 100%;
+        }
+
+        .title-subtitle {
+            font-size: clamp(1.5rem, 4vw, 40pt);
+            line-height: 1.2;
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(0, 0, 0, 0.8); /* Gris 80% */
+        }
+
+        .title-author {
+            font-size: clamp(1.1rem, 2vw, 20pt);
+            line-height: 1.3;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.6); /* Gris 60% */
+        }
+
+        /* Tipografía para secciones internas (Sobre el Proyecto & Sobre el Autor) */
+        .text-title-section {
+            font-size: clamp(1.8rem, 4.2vw, 40pt);
+            font-weight: 700;
+            color: #000000;
+            line-height: 1.2;
+            white-space: nowrap; /* Fuerza estrictamente una sola línea */
+        }
+
+        .text-body-section {
+            font-size: clamp(1.05rem, 2.1vw, 20pt);
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.8); /* Gris 80% */
+            line-height: 1.8; /* Aireado y legible para cédulas de sala */
+            letter-spacing: -0.01em;
+        }
+
+        /* Estilo para el título del barrio en el mosaico (plano, sin sombreados) */
+        .grid-title {
+            transition: color 0.25s ease-in-out;
+        }
+
+        /* Botones ultra-minimalistas completamente cuadrados de la portada */
+        .btn-minimal {
+            font-size: 15pt;
+            font-weight: 700;
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 12px 32px;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            border: 2px solid #000000;
+            white-space: nowrap;
+        }
+
+        /* Transición de colores específica por botón */
+        .btn-left:hover {
+            background-color: #1cf0f1;
+            border-color: #1cf0f1;
+            color: #000000;
+        }
+
+        .btn-right:hover {
+            background-color: #fda9d7;
+            border-color: #fda9d7;
+            color: #000000;
+        }
+
+        /* Animación suave de transición de vistas */
+        .fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Scrollbar minimalista */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFFFF;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- CONTENEDOR DINÁMICO PRINCIPAL -->
+    <main id="app-content" class="flex-grow flex flex-col justify-center w-full mx-auto px-12 md:px-20 lg:px-32 py-16 md:py-24">
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer id="main-footer" class="border-t-2 border-black bg-white py-10 text-xs tracking-widest font-bold uppercase hidden">
+        <div class="max-w-[90rem] mx-auto px-12 md:px-20 lg:px-32 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p id="footer-credits">© 2026 ENRIQUE ORTEGA VÁZQUEZ — ARCHIVO FOTOGRÁFICO</p>
+            <p>HELVED-MODULAR ARCHIVE v1.6</p>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="fixed inset-0 bg-white z-50 hidden opacity-0 transition-opacity duration-200 flex flex-col">
+        <div class="flex justify-end p-8 border-b-2 border-black bg-white">
+            <button onclick="closeLightbox()" class="hover:opacity-60 transition-opacity p-2 border-2 border-black bg-black text-white hover:bg-white hover:text-black">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <div class="flex-grow flex items-center justify-center p-12 bg-neutral-100 relative">
+            <button onclick="navigateLightbox(-1)" class="absolute left-6 bg-black hover:bg-white text-white hover:text-black border-2 border-black p-4 transition-all z-10">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <img id="lightbox-image" src="" alt="" class="max-w-full max-h-full object-contain border-2 border-black">
+            <button onclick="navigateLightbox(1)" class="absolute right-6 bg-black hover:bg-white text-white hover:text-black border-2 border-black p-4 transition-all z-10">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const ARCHIVE_CONFIG = {
+            title: "Paletas corporativas",
+            subtitle: "Proyecto de archivo (2025-2026)",
+            author: "Enrique Ortega Vázquez"
+        };
+
+        const ARCHIVE_DATA = [
+            {
+                id: "villa-universidad",
+                title: "Villa Universidad",
+                year: "2025",
+                description: "Registro sistemático de intervenciones de color corporativo sobre infraestructura deteriorada.",
+                coverImage: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=800",
+                images: [
+                    { id: "vu-1", title: "Muestra Villa Universidad 01", url: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=1200" },
+                    { id: "vu-2", title: "Muestra Villa Universidad 02", url: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=1200" }
+                ]
+            },
+            {
+                id: "manuel-villalongin",
+                title: "Manuel Villalongín \"Girasoles\"",
+                year: "2025",
+                description: "Catalogación del impacto cromático en Manuel Villalongín.",
+                coverImage: "https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?auto=format&fit=crop&q=80&w=800",
+                images: [
+                    { id: "mv-1", title: "Muestra Girasoles 01", url: "https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?auto=format&fit=crop&q=80&w=1200" }
+                ]
+            },
+            {
+                id: "la-colina",
+                title: "La Colina",
+                year: "2026",
+                description: "Desvanecimiento y reapropiación de la pintura habitacional.",
+                coverImage: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?auto=format&fit=crop&q=80&w=800",
+                images: [
+                    { id: "lc-1", title: "Muestra La Colina 01", url: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?auto=format&fit=crop&q=80&w=1200" }
+                ]
+            }
+        ];
+
+        const app = document.getElementById('app-content');
+        const mainFooter = document.getElementById('main-footer');
+        let currentImagesList = [];
+        let currentImageIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const HOVER_COLORS = ['#1cf0f1', '#fda9d7', '#98f7a5', '#efee9b'];
+
+        function applyRandomHoverColor(el) { el.style.color = HOVER_COLORS[Math.floor(Math.random() * HOVER_COLORS.length)]; }
+        function resetHoverColor(el) { el.style.color = ''; }
+
+        function applyRandomGridHover(element) {
+            const randomColor = HOVER_COLORS[Math.floor(Math.random() * HOVER_COLORS.length)];
+            const img = element.querySelector('img');
+            const overlay = element.querySelector('.grid-overlay');
+            const title = element.querySelector('.grid-title');
+            if (img && overlay && title) {
+                img.style.opacity = '0';
+                overlay.style.backgroundColor = randomColor;
+                title.style.color = '#000000';
+            }
+        }
+
+        function resetGridHover(element) {
+            const img = element.querySelector('img');
+            const overlay = element.querySelector('.grid-overlay');
+            const title = element.querySelector('.grid-title');
+            if (img && overlay && title) {
+                img.style.opacity = '0.5';
+                overlay.style.backgroundColor = 'transparent';
+                title.style.color = '#FFFFFF';
+            }
+        }
+
+        function applyGlobalConfig() {
+            document.title = `${ARCHIVE_CONFIG.title} | ${ARCHIVE_CONFIG.author}`;
+            document.getElementById('footer-credits').innerText = `© 2026 ${ARCHIVE_CONFIG.author.toUpperCase()} — ARCHIVO FOTOGRÁFICO`;
+        }
+
+        function renderSidebar(activeHash) {
+            const isAboutActive = activeHash === '#about';
+            const isRegistroActive = activeHash.startsWith('#registro');
+            const subItemsHTML = ARCHIVE_DATA.map(folder => {
+                const isThisFolderActive = activeHash === `#registro/${folder.id}`;
+                return `<a href="#registro/${folder.id}" class="block pl-4 text-sm transition-colors duration-150 ${isThisFolderActive ? 'text-black font-bold underline' : 'text-gray-400'}" onmouseenter="applyRandomHoverColor(this)" onmouseleave="resetHoverColor(this)">${folder.title}</a>`;
+            }).join('');
+            return `
+                <div class="space-y-12 select-none pr-4">
+                    <div><a href="#inicio" class="group block"><h2 class="text-3xl font-black uppercase tracking-tight leading-[0.95] text-black transition-colors" onmouseenter="applyRandomHoverColor(this)" onmouseleave="resetHoverColor(this)">Paletas<br>corporativas</h2><p class="text-xs uppercase tracking-widest text-gray-500 mt-2 font-bold">Proyecto de archivo</p></a></div>
+                    <nav class="flex flex-col gap-6 text-base font-bold uppercase tracking-wider">
+                        <a href="#inicio" class="text-gray-400 transition-colors" onmouseenter="applyRandomHoverColor(this)" onmouseleave="resetHoverColor(this)">Inicio</a>
+                        <div class="space-y-3">
+                            <a href="#registro" class="block transition-colors ${isRegistroActive ? 'text-black underline' : 'text-gray-400'}" onmouseenter="applyRandomHoverColor(this)" onmouseleave="resetHoverColor(this)">Registro</a>
+                            <div class="flex flex-col gap-2 border-l border-neutral-200 ml-1">${subItemsHTML}</div>
+                        </div>
+                        <a href="#about" class="block transition-colors ${isAboutActive ? 'text-black underline' : 'text-gray-400'}" onmouseenter="applyRandomHoverColor(this)" onmouseleave="resetHoverColor(this)">Sobre el proyecto</a>
+                    </nav>
+                </div>
+            `;
+        }
+
+        function router() {
+            const hash = window.location.hash || '#inicio';
+            closeLightbox();
+            if (hash === '#inicio') {
+                mainFooter.classList.add('hidden');
+                app.innerHTML = '';
+                renderInicio();
+            } else {
+                mainFooter.classList.remove('hidden');
+                app.innerHTML = `<div class="fade-in flex flex-col md:flex-row gap-16 md:gap-24 w-full items-start"><aside class="w-full md:w-1/4 min-w-[260px] flex-shrink-0">${renderSidebar(hash)}</aside><section class="flex-grow max-w-4xl w-full" id="inner-content"></section></div>`;
+                if (hash === '#registro') renderRegistro();
+                else if (hash.startsWith('#registro/')) renderFolder(hash.split('/')[1]);
+                else if (hash === '#about') renderAbout();
+            }
+            lucide.createIcons();
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        function renderInicio() {
+            app.innerHTML = `<div class="fade-in flex flex-col items-center justify-center min-h-[70vh] text-center max-w-7xl mx-auto py-12"><h1 class="title-main mb-6">${ARCHIVE_CONFIG.title}</h1><h2 class="title-subtitle mb-8">${ARCHIVE_CONFIG.subtitle}</h2><h3 class="title-author mb-20">${ARCHIVE_CONFIG.author}</h3><div class="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-[180px] w-full max-w-5xl px-8"><a href="#registro" class="btn-minimal btn-left w-full sm:w-auto min-w-[260px]">Fotos de registro</a><a href="#about" class="btn-minimal btn-right w-full sm:w-auto min-w-[260px]">Sobre el proyecto</a></div></div>`;
+        }
+
+        function renderRegistro() {
+            document.getElementById('inner-content').innerHTML = `
+                <div class="space-y-12">
+                    <div class="max-w-4xl"><h1 class="text-title-section mb-2">Registro</h1><p class="text-body-section" style="color: rgba(0, 0, 0, 0.6); line-height: 1.5;">Comex realizó intervenciones en 18 barrios a lo largo de la ciudad de Morelia desde 2016.</p></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 border-t-2 border-l-2 border-black max-w-5xl">
+                        ${ARCHIVE_DATA.map(folder => {
+                            const lastImage = folder.images[folder.images.length - 1].url;
+                            return `
+                                <a href="#registro/${folder.id}" class="group relative aspect-square overflow-hidden border-r-2 border-b-2 border-black bg-black transition-colors duration-200 block" onmouseenter="applyRandomGridHover(this)" onmouseleave="resetGridHover(this)">
+                                    <img src="${lastImage}" alt="${folder.title}" class="absolute inset-0 w-full h-full object-cover filter grayscale opacity-50 transition-all duration-300 pointer-events-none">
+                                    <div class="grid-overlay absolute inset-0 transition-all duration-300 flex items-center justify-center p-8 pointer-events-none">
+                                        <h3 class="grid-title text-xs md:text-sm font-bold uppercase tracking-widest text-center text-white">
+                                            ${folder.title}
+                                        </h3>
+                                    </div>
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function renderFolder(folderId) {
+            const folder = ARCHIVE_DATA.find(f => f.id === folderId);
+            currentImagesList = folder.images;
+            document.getElementById('inner-content').innerHTML = `
+                <div class="space-y-12">
+                    <div class="border-b-2 border-black pb-8">
+                        <a href="#registro" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-black mb-4 transition-colors">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i> REGISTRO GENERAL
+                        </a>
+                        <h1 class="text-4xl font-bold uppercase tracking-tight mt-1">${folder.title}</h1>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-0 border-t-2 border-l-2 border-black">
+                        ${folder.images.map((img, index) => `
+                            <div onclick="openLightbox(${index})" class="aspect-square border-r-2 border-b-2 border-black cursor-pointer overflow-hidden group">
+                                <img src="${img.url}" class="w-full h-full object-cover transition-opacity hover:opacity-90">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function renderAbout() {
+            document.getElementById('inner-content').innerHTML = `<div class="space-y-32 pb-24"><div class="space-y-10 max-w-4xl"><h2 class="text-title-section">Sobre el proyecto</h2><p class="text-body-section">Paletas corporativas documenta la pintura habitacional y la mercantilización del paisaje en Morelia.</p></div><div class="space-y-10 max-w-4xl border-t-2 border-black pt-24"><h2 class="text-title-section">Sobre el autor</h2><p class="text-body-section">Enrique Ortega Vázquez, artista y maestrante en Historia del Arte por la UNAM.</p></div></div>`;
+        }
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightbox-image').src = currentImagesList[index].url;
+            lightbox.classList.remove('hidden', 'opacity-0');
+            lightbox.classList.add('opacity-100');
+            document.body.style.overflow = 'hidden';
+            window.addEventListener('keydown', handleKeyNavigation);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => lightbox.classList.add('hidden'), 200);
+            document.body.style.overflow = '';
+            window.removeEventListener('keydown', handleKeyNavigation);
+        }
+
+        function handleKeyNavigation(e) {
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            else if (e.key === 'ArrowRight') navigateLightbox(1);
+            else if (e.key === 'Escape') closeLightbox();
+        }
+
+        function navigateLightbox(d) {
+            currentImageIndex = (currentImageIndex + d + currentImagesList.length) % currentImagesList.length;
+            document.getElementById('lightbox-image').src = currentImagesList[currentImageIndex].url;
+        }
+
+        applyGlobalConfig();
+        window.addEventListener('hashchange', router);
+        window.addEventListener('DOMContentLoaded', router);
+    </script>
+</body>
+</html>
